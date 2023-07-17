@@ -46,11 +46,7 @@ jobs:
         pip install wheel 
         pip install setuptools
         pip install pytest
-  run_bot:
-
-    needs: install     
-    runs-on: ubuntu-latest
-
+        
   run_bot:
 
     needs: install     
@@ -62,4 +58,3 @@ jobs:
       run: |
         curl -o telegram_bot_otvet_v2.py https://raw.githubusercontent.com/webdroid2022/answerbot/main/telegram_bot_otvet_v2.py
         python telegram_bot_otvet_v2.py
-
