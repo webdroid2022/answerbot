@@ -46,7 +46,6 @@ jobs:
         pip install wheel 
         pip install setuptools
         pip install pytest
-        pip install pyTelegramBotAPI
 
   run_bot:
 
