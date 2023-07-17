@@ -1,43 +1,48 @@
 name: Telegram Answer Bot
+
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/5 * * * *"  
   workflow_dispatch:
 
 jobs:
 
   setup:
-    runs-on: ubuntu-latest   
-    steps:  
-    
+
+    runs-on: ubuntu-latest
+
+    steps:
+
     - uses: actions/checkout@v3
-    
-    - name: Set up Python   
+
+    - name: Set up Python    
       uses: actions/setup-python@v4
       with:
-        python-version: 3.x
-
+       python-version: 3.x
+       
   install:
-    needs: setup
+
+    needs: setup  
     runs-on: ubuntu-latest
 
     steps:
     
     - uses: actions/cache@v3
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+      with: 
+       path: ~/.cache/pip
+       key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
 
-    - name: Install requirements
+    - name: Install requirements  
       run: |
-        if [ -f "requirements.txt" ]; then
-          pip install -r requirements.txt
-        else
-          pip install wheel
-          pip install setuptools
-          pip install pytest
-        fi
-        
+       if [ -f "requirements.txt" ]; then
+         pip install -r requirements.txt
+       else
+         pip install wheel 
+         pip install setuptools
+         pip install pytest
+         exit 1
+       fi
+       
   run_bot:
   
     needs: install     
@@ -45,9 +50,10 @@ jobs:
 
     steps:
     
-    - name: Run bot
+    - name: Run bot  
+      run: |
+       cd ${{ github.workspace }}
+       python telegram_bot_otvet_v2.py
       env:
-        BOT_TOKEN: ${{secrets.BOT_TOKEN}} 
-        GROUP_CHAT_ID: ${{secrets.GROUP_CHAT_ID}}  
-      run: python telegram_bot_otvet_v2.py
-
+        BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+        GROUP_CHAT_ID: ${{secrets.GROUP_CHAT_ID}}
