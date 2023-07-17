@@ -1,6 +1,6 @@
 name: Telegram Answer Bot
 
-on: 
+on:
   schedule:
     - cron: '*/5 * * * *'
   workflow_dispatch:
@@ -47,7 +47,7 @@ jobs:
         pip install setuptools
         pip install pytest
         pip install pyTelegramBotAPI
-        
+
   run_bot:
 
     needs: install     
