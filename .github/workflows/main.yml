@@ -53,7 +53,8 @@ jobs:
 
     steps:
     
-    - name: Run bot
-      run: |
-  curl -o telegram_bot_otvet_v2.py https://raw.githubusercontent.com/webdroid2022/answerbot/main/telegram_bot_otvet_v2.py
-  python telegram_bot_otvet_v2.py
+- name: Run bot
+  run: |
+    curl -o telegram_bot_otvet_v2.py https://raw.githubusercontent.com/webdroid2022/answerbot/main/telegram_bot_otvet_v2.py
+    python telegram_bot_otvet_v2.py
+
