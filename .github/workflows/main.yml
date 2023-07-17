@@ -1,24 +1,32 @@
 name: Telegram Answer Bot
 on:
   schedule:
-    - cron: "0 * * * *"
+    - cron: "0 /20 * * *"
   workflow_dispatch:  
 
 jobs:
-  run:
-    runs-on: ubuntu-latest
 
+  setup:
+    runs-on: ubuntu-latest   
     steps:
     - uses: actions/checkout@v2
-    
-    - name: Set up Python
+    - name: Set up Python  
       uses: actions/setup-python@v2
-      with:
+      with:  
         python-version: 3.x
         
+  install:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
     - name: Install requirements
       run: pip install -r requirements.txt
       
+  run_bot:
+    needs: install     
+    runs-on: ubuntu-latest
+    
+    steps:
     - name: Run bot
       env:
         BOT_TOKEN: ${{secrets.BOT_TOKEN}}
