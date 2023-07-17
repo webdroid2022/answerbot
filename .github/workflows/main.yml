@@ -36,6 +36,7 @@ jobs:
           pip install wheel
           pip install setuptools
           pip install pytest
+        fi
         
   run_bot:
   
