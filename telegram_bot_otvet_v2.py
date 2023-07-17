@@ -1,8 +1,9 @@
 import telebot
+import os
 
 bot = telebot.TeleBot("6066046619:AAFsJlEk0s9cJ1FceL1frcEy7ncZqnrc2-w")
 
-GROUP_CHAT_ID = -1001912514391  # Замініть на ID групового чату
+GROUP_CHAT_ID = os.getenv("GROUP_CHAT_ID")  # Замініть на ID групового чату
 
 # обробка команди /start
 @bot.message_handler(commands=["start"])
