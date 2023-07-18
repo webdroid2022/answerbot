@@ -1,61 +1,26 @@
 name: Telegram Answer Bot
-
 on:
   schedule:
     - cron: '*/5 * * * *'
-  workflow_dispatch:
+  workflow_dispatch:  
 
 jobs:
-
-  setup:
-  
+  run:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
     
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python  
-      uses: actions/setup-python@v4
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
         python-version: 3.x
-
-  install:
-
-    needs: setup
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Check for requirements.txt
-      id: check_requirements
-      run: |
-        if [ -f "requirements.txt" ]; then
-          echo "::set-output name=exists::true"
-        else 
-          echo "::set-output name=exists::false" 
-        fi
-
-    - name: Install from requirements.txt  
-      if: steps.check_requirements.outputs.exists == 'true'
+        
+    - name: Install requirements
       run: pip install -r requirements.txt
-
-    - name: Install default requirements
-      if: steps.check_requirements.outputs.exists == 'false'
-      run: |
-        pip install wheel 
-        pip install setuptools
-        pip install pytest
-
-  run_bot:
-
-    needs: install     
-    runs-on: ubuntu-latest
-
-    steps:
-    
+      
     - name: Run bot
-      env: 
-        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
-      run: python ${{ github.workspace }}/telegram_bot_otvet_v2.py
+      env:
+        BOT_TOKEN: ${{secrets.BOT_TOKEN}}
+        GROUP_CHAT_ID: ${{secrets.GROUP_CHAT_ID}}  
+      run: python telegram_bot_otvet_v2.py
