@@ -8,9 +8,9 @@ on:
   workflow_dispatch:
 
   # Обмеження одночасних запусків
-  concurrency:
-    group: ${{ github.workflow }}  
-    cancel-in-progress: true 
+concurrency:
+ group: ${{ github.workflow }}  
+ cancel-in-progress: true 
 
 jobs:
 
