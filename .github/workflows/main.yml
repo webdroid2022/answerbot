@@ -1,4 +1,3 @@
-
 name: Telegram Bot
 
 on:
@@ -7,27 +6,33 @@ on:
 
   workflow_dispatch:
 
-  # Обмеження одночасних запусків
-concurrency:
- group: ${{ github.workflow }}  
- cancel-in-progress: true 
+# Налаштування обмеження одночасних запусків   
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
 
   setup:
+  
     runs-on: ubuntu-latest
 
     steps:
+    
     - uses: actions/checkout@v3
 
-  # Перевірка успішності  
   run-bot:
+
     needs: setup
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     
     runs-on: ubuntu-latest
-
+    
     steps:
-
+    
+    - name: Install requirements  
+      run: pip install -r requirements.txt
+      
     - name: Run bot
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}  
       run: python bot.py
