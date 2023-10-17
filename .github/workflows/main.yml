@@ -36,4 +36,4 @@ jobs:
       env:
         BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
-      run: python bot_otv.py
+      run: python telegram_bot_otvet_v2.py
