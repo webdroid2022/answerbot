@@ -20,5 +20,3 @@ def handle_text(message):
             bot.send_message(user_id, message.text)
     else:  # Повідомлення від користувача - запит
         bot.forward_message(GROUP_CHAT_ID, message.chat.id, message.message_id)
-
-bot.polling(none_stop=True, interval=0)
