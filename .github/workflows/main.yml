@@ -33,4 +33,4 @@ jobs:
       run: pip install pyTelegramBotAPI==4.8.0
       
     - name: Run bot
-      run: python telegram_bot_otvet_v2.py
+      run: python home/runner/work/answerbot/telegram_bot_otvet_v2.py
