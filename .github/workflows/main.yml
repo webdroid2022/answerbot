@@ -1,38 +1,39 @@
-#name: Telegram Bot
+name: Telegram Bot Robota K
 
-#on:
-#  schedule:
-#   - cron: '*/5 * * * *'
+on:
+  schedule:
+   - cron: '*/5 * * * *'
 
-#  workflow_dispatch:
+  workflow_dispatch:
 
 # Налаштування обмеження одночасних запусків   
-#concurrency: 
-#  group: ${{ github.workflow }}
-#  cancel-in-progress: true
+concurrency: 
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
 
-#jobs:
+jobs:
 
-#  setup:
+  setup:
   
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
- #   steps:
+    steps:
     
- #   - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
 
- # run-bot:
+  run-bot:
 
-#    needs: setup
+    needs: setup
     
-#    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
     
- #   steps:
+    steps:
     
- #   - name: Install requirements  
- #     run: pip install -r requirements.txt
+    - name: Install requirements  
+      run: pip install pyTelegramBotAPI==4.8.0
       
- #   - name: Run bot
- #     env:
- #       BOT_TOKEN: ${{ secrets.BOT_TOKEN }}  
-  #    run: python bot.py
+    - name: Run bot
+      env:
+        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
+      run: python bot_otv.py
