@@ -33,7 +33,4 @@ jobs:
       run: pip install pyTelegramBotAPI==4.8.0
       
     - name: Run bot
-      env:
-        BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
-        GROUP_CHAT_ID: ${{ secrets.GROUP_CHAT_ID }}
-      run: python https://github.com/webdroid2022/answerbot/blob/main/telegram_bot_otvet_v2.py
+      run: python telegram_bot_otvet_v2.py
